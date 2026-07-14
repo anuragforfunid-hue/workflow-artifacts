@@ -1,10 +1,10 @@
 name: Deploy Prod
 
 on:
-workflow_run:
-    workflows: ["Build and Deploy"]
-    types:
-    - completed
+  workflow_run:
+      workflows: ["Build and Deploy"]
+      types:
+      - completed
 
 permissions:
   contents: read
@@ -19,10 +19,10 @@ jobs:
         steps:
           - uses: actions/download-artifact@v8
             with:
-            name: octomatch
-            path: website
-            run-id: ${{ github.event.workflow_run.id }}
-            github-token: ${{ secrets.GITHUB_TOKEN }}
+              name: octomatch
+              path: website
+              run-id: ${{ github.event.workflow_run.id }}
+              github-token: ${{ secrets.GITHUB_TOKEN }}
 
           - name: Deploy to Production
             run: |
